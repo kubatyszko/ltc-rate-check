@@ -29,5 +29,5 @@ FAQ
   Some exchanges don't offer an average value in their API, in that case the script uses the value that LTCs had in the most recent transaction on that exchange.
 * *How are the estimated earnings calculated?*  
   Your own amount of LTC is multiplied with the LTC value in the Avg/Last column.
-* *I like it, how can I thank you?*
-  Let me know via any means, it will make me happy. Or send me some LTC to LWWi5tTj9YGhnXNVGpDZAwUyx83WeKx7Jx
+* *I like it, how can I thank you?*  
+  Let me know via any means, it will make me happy. Or send me some LTC to **LWWi5tTj9YGhnXNVGpDZAwUyx83WeKx7Jx**
