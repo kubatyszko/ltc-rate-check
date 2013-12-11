@@ -12,7 +12,7 @@ Needs the excellent [jq](http://stedolan.github.io/jq/) to process JSON, availab
 Usage
 -----
 ```./ltc-rate-check.sh [your amount of litecoins]```  
-It also works great in an infinite loop for all your LTC value obsessing needs: ```while [ 1 = 1 ]; do ./ltc_check.sh [your amount of litecoins];sleep [seconds before refreshing]; done```
+It also works great in an infinite loop for all your LTC value obsessing needs: ```while [ 1 = 1 ]; do ./ltc-rate-check.sh [your amount of litecoins];sleep [seconds before refreshing]; done```
 
 Supported Exchanges
 -------------------
