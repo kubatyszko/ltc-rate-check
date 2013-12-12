@@ -31,10 +31,18 @@ btceearn=`echo "$btceavg * $amount" | bc`
 printf "%-20s %-15s %-15s %-15s %-15s %s\n" 'btc-e.com' "| $btcehigh" "| $btcelow" "| (A) $btceavg" "| € $btceearn" '  |'
 
 kraken=`curl -s -k https://api.kraken.com/0/public/Ticker?pair=XLTCZEUR`
-krakenhigh=`echo $kraken | jq '.result.XLTCZEUR.h[1] | tonumber'`
-krakenlow=`echo $kraken | jq '.result.XLTCZEUR.l[1] | tonumber'`
-krakenavg=`echo $kraken | jq '.result.XLTCZEUR.p[1] | tonumber'`
-krakenearn=`echo "$krakenavg * $amount" | bc`
+if [[ $kraken =~ .*turn_on_js.* ]]
+then
+  krakenhigh=`echo '-'`
+  krakenlow=`echo '-'`
+  krakenavg=`echo '-'`
+  krakenearn=`echo '-'`
+else
+  krakenhigh=`echo $kraken | jq '.result.XLTCZEUR.h[1] | tonumber'`
+  krakenlow=`echo $kraken | jq '.result.XLTCZEUR.l[1] | tonumber'`
+  krakenavg=`echo $kraken | jq '.result.XLTCZEUR.p[1] | tonumber'`
+  krakenearn=`echo "$krakenavg * $amount" | bc`
+fi
 printf "%-20s %-15s %-15s %-15s %-15s %s\n" 'kraken.com' "| $krakenhigh" "| $krakenlow" "| (A) $krakenavg" "| € $krakenearn" '  |'
 
 therock=`curl -s -k https://www.therocktrading.com/api/ticker/LTCEUR`
@@ -73,10 +81,18 @@ usdbtceearn=`echo "$usdbtceavg * $amount" | bc`
 printf "%-20s %-15s %-15s %-15s %-15s %s\n" 'btc-e.com' "| $usdbtcehigh" "| $usdbtcelow" "| (A) $usdbtceavg" "| $ $usdbtceearn" '|'
 
 usdkraken=`curl -s -k https://api.kraken.com/0/public/Ticker?pair=XLTCZUSD`
-usdkrakenhigh=`echo $usdkraken | jq '.result.XLTCZUSD.h[1] | tonumber'`
-usdkrakenlow=`echo $usdkraken | jq '.result.XLTCZUSD.l[1] | tonumber'`
-usdkrakenavg=`echo $usdkraken | jq '.result.XLTCZUSD.p[1] | tonumber'`
-usdkrakenearn=`echo "$usdkrakenavg * $amount" | bc`
+if [[ $usdkraken =~ .*turn_on_js.* ]]
+then
+  usdkrakenhigh=`echo '-'`
+  usdkrakenlow=`echo '-'`
+  usdkrakenavg=`echo '-'`
+  usdkrakenearn=`echo '-'`
+else
+  usdkrakenhigh=`echo $usdkraken | jq '.result.XLTCZUSD.h[1] | tonumber'`
+  usdkrakenlow=`echo $usdkraken | jq '.result.XLTCZUSD.l[1] | tonumber'`
+  usdkrakenavg=`echo $usdkraken | jq '.result.XLTCZUSD.p[1] | tonumber'`
+  usdkrakenearn=`echo "$usdkrakenavg * $amount" | bc`
+fi
 printf "%-20s %-15s %-15s %-15s %-15s %s\n" 'kraken.com' "| $usdkrakenhigh" "| $usdkrakenlow" "| (A) $usdkrakenavg" "| $ $usdkrakenearn" '|'
 
 usdtherock=`curl -s -k https://www.therocktrading.com/api/ticker/LTCUSD`
