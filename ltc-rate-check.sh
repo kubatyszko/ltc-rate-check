@@ -8,10 +8,18 @@ printf "%-20s %-15s %-15s %-15s %-15s %s\n" ' ** Market (EUR) ** ' '| HIGH' '| L
 echo '--------------------------------------------------------------------------------------'
 
 cccom=`curl -s -k https://crypto-trade.com/api/1/ticker/ltc_eur`
-cccomlow=`echo $cccom | jq '.data.low | tonumber'`
-cccomhigh=`echo $cccom | jq '.data.high | tonumber'`
-cccomlast=`echo $cccom | jq '.data.last | tonumber'`
-cccomearn=`echo "$cccomlast * $amount" | bc`
+if [[ $cccom =~ .*error.* ]]
+then
+  cccomlow=`echo '-'`
+  cccomhigh=`echo '-'`
+  cccomlast=`echo '-'`
+  cccomearn=`echo '-'`
+else
+  cccomlow=`echo $cccom | jq '.data.low | tonumber'`
+  cccomhigh=`echo $cccom | jq '.data.high | tonumber'`
+  cccomlast=`echo $cccom | jq '.data.last | tonumber'`
+  cccomearn=`echo "$cccomlast * $amount" | bc`
+fi
 printf "%-20s %-15s %-15s %-15s %-15s %s\n" 'crypto-trade.com' "| $cccomhigh" "| $cccomlow" "| (L) $cccomlast" "| € $cccomearn" '  |'
 
 
@@ -43,10 +51,18 @@ printf "%-20s %-15s %-15s %-15s %-15s %s\n" ' ** Market (USD) ** ' '| HIGH' '| L
 echo '--------------------------------------------------------------------------------------'
 
 usdcccom=`curl -s -k https://crypto-trade.com/api/1/ticker/ltc_usd`
-usdcccomlow=`echo $usdcccom | jq '.data.low | tonumber'`
-usdcccomhigh=`echo $usdcccom | jq '.data.high | tonumber'`
-usdcccomlast=`echo $usdcccom | jq '.data.last | tonumber'`
-usdcccomearn=`echo "$usdcccomlast * $amount" | bc`
+if [[ $usdcccom =~ .*error.* ]]
+then
+  usdcccomlow=`echo '-'`
+  usdcccomhigh=`echo '-'`
+  usdcccomlast=`echo '-'`
+  usdcccomearn=`echo '-'`
+else
+  usdcccomlow=`echo $usdcccom | jq '.data.low | tonumber'`
+  usdcccomhigh=`echo $usdcccom | jq '.data.high | tonumber'`
+  usdcccomlast=`echo $usdcccom | jq '.data.last | tonumber'`
+  usdcccomearn=`echo "$usdcccomlast * $amount" | bc`
+fi
 printf "%-20s %-15s %-15s %-15s %-15s %s\n" 'crypto-trade.com' "| $usdcccomhigh" "| $usdcccomlow" "| (L) $usdcccomlast" "| $ $usdcccomearn" '|'
 
 usdbtce=`curl -s -k https://btc-e.com/api/2/ltc_usd/ticker`
