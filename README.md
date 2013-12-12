@@ -7,7 +7,7 @@ Checks various LTC exchanges for current rates in USD/EUR and optionally calcula
 
 Requirements/Installation
 -----
-Needs the excellent [jq](http://stedolan.github.io/jq/) to process JSON, available in most package managers. Then either clone the repository or simply download the [raw bash script](https://github.com/matrixagent/ltc-rate-check/raw/master/ltc-rate-check.sh) and make it executable.  
+Needs *curl* and the excellent [*jq*](http://stedolan.github.io/jq/) to process JSON, available in most package managers. Then either clone the repository or simply download the [raw bash script](https://github.com/matrixagent/ltc-rate-check/raw/master/ltc-rate-check.sh) and make it executable.  
 
 Usage
 -----
